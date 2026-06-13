@@ -1,0 +1,92 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{475CCF2D-EA85-4993-8E75-036007334655}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{F8C85E77-64D5-4B8E-BB16-0F09D3A5C006}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaReservation.Catalog.Api", "src\Catalog\CinemaReservation.Catalog.Api\CinemaReservation.Catalog.Api.csproj", "{26889E7F-7B17-44A0-BBB2-6D9E524AABF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaReservation.Catalog.Application", "src\Catalog\CinemaReservation.Catalog.Application\CinemaReservation.Catalog.Application.csproj", "{B7F2CE5C-3AB1-4C70-8B64-B7A3F169BDA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaReservation.Catalog.Domain", "src\Catalog\CinemaReservation.Catalog.Domain\CinemaReservation.Catalog.Domain.csproj", "{87996365-9148-4B41-856D-ABBBE625224F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaReservation.Catalog.Infrastructure", "src\Catalog\CinemaReservation.Catalog.Infrastructure\CinemaReservation.Catalog.Infrastructure.csproj", "{E1411E30-E29D-4C66-B156-4F2BBC9B88FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reservation", "Reservation", "{B19A0258-EE90-4224-9DAC-1FDB786F7CD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaReservation.Reservation.Api", "src\Reservation\CinemaReservation.Reservation.Api\CinemaReservation.Reservation.Api.csproj", "{82285E80-B3CC-4B9E-9F7B-CF0467F22C34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaReservation.Reservation.Application", "src\Reservation\CinemaReservation.Reservation.Application\CinemaReservation.Reservation.Application.csproj", "{A7C50ADD-15F8-4D14-8F5A-B055FA668486}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaReservation.Reservation.Domain", "src\Reservation\CinemaReservation.Reservation.Domain\CinemaReservation.Reservation.Domain.csproj", "{8A72894B-AF4C-4E52-8599-758544B29E05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaReservation.Reservation.Infrastructure", "src\Reservation\CinemaReservation.Reservation.Infrastructure\CinemaReservation.Reservation.Infrastructure.csproj", "{E355F1CE-0DBD-4384-8E98-BEBB7A735C7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{049B611F-85F6-4E8D-9E80-DB2A814F4770}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaReservation.Common.Messaging", "src\Common\CinemaReservation.Common.Messaging\CinemaReservation.Common.Messaging.csproj", "{276765E4-923A-45DE-A391-9FB8E83ABCDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26889E7F-7B17-44A0-BBB2-6D9E524AABF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26889E7F-7B17-44A0-BBB2-6D9E524AABF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26889E7F-7B17-44A0-BBB2-6D9E524AABF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26889E7F-7B17-44A0-BBB2-6D9E524AABF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F2CE5C-3AB1-4C70-8B64-B7A3F169BDA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F2CE5C-3AB1-4C70-8B64-B7A3F169BDA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F2CE5C-3AB1-4C70-8B64-B7A3F169BDA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F2CE5C-3AB1-4C70-8B64-B7A3F169BDA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87996365-9148-4B41-856D-ABBBE625224F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87996365-9148-4B41-856D-ABBBE625224F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87996365-9148-4B41-856D-ABBBE625224F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87996365-9148-4B41-856D-ABBBE625224F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1411E30-E29D-4C66-B156-4F2BBC9B88FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1411E30-E29D-4C66-B156-4F2BBC9B88FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1411E30-E29D-4C66-B156-4F2BBC9B88FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1411E30-E29D-4C66-B156-4F2BBC9B88FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82285E80-B3CC-4B9E-9F7B-CF0467F22C34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82285E80-B3CC-4B9E-9F7B-CF0467F22C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82285E80-B3CC-4B9E-9F7B-CF0467F22C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82285E80-B3CC-4B9E-9F7B-CF0467F22C34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7C50ADD-15F8-4D14-8F5A-B055FA668486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C50ADD-15F8-4D14-8F5A-B055FA668486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C50ADD-15F8-4D14-8F5A-B055FA668486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C50ADD-15F8-4D14-8F5A-B055FA668486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A72894B-AF4C-4E52-8599-758544B29E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A72894B-AF4C-4E52-8599-758544B29E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A72894B-AF4C-4E52-8599-758544B29E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A72894B-AF4C-4E52-8599-758544B29E05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E355F1CE-0DBD-4384-8E98-BEBB7A735C7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E355F1CE-0DBD-4384-8E98-BEBB7A735C7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E355F1CE-0DBD-4384-8E98-BEBB7A735C7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E355F1CE-0DBD-4384-8E98-BEBB7A735C7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{276765E4-923A-45DE-A391-9FB8E83ABCDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{276765E4-923A-45DE-A391-9FB8E83ABCDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{276765E4-923A-45DE-A391-9FB8E83ABCDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{276765E4-923A-45DE-A391-9FB8E83ABCDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F8C85E77-64D5-4B8E-BB16-0F09D3A5C006} = {475CCF2D-EA85-4993-8E75-036007334655}
+		{26889E7F-7B17-44A0-BBB2-6D9E524AABF6} = {F8C85E77-64D5-4B8E-BB16-0F09D3A5C006}
+		{B7F2CE5C-3AB1-4C70-8B64-B7A3F169BDA3} = {F8C85E77-64D5-4B8E-BB16-0F09D3A5C006}
+		{87996365-9148-4B41-856D-ABBBE625224F} = {F8C85E77-64D5-4B8E-BB16-0F09D3A5C006}
+		{E1411E30-E29D-4C66-B156-4F2BBC9B88FB} = {F8C85E77-64D5-4B8E-BB16-0F09D3A5C006}
+		{B19A0258-EE90-4224-9DAC-1FDB786F7CD8} = {475CCF2D-EA85-4993-8E75-036007334655}
+		{82285E80-B3CC-4B9E-9F7B-CF0467F22C34} = {B19A0258-EE90-4224-9DAC-1FDB786F7CD8}
+		{A7C50ADD-15F8-4D14-8F5A-B055FA668486} = {B19A0258-EE90-4224-9DAC-1FDB786F7CD8}
+		{8A72894B-AF4C-4E52-8599-758544B29E05} = {B19A0258-EE90-4224-9DAC-1FDB786F7CD8}
+		{E355F1CE-0DBD-4384-8E98-BEBB7A735C7F} = {B19A0258-EE90-4224-9DAC-1FDB786F7CD8}
+		{049B611F-85F6-4E8D-9E80-DB2A814F4770} = {475CCF2D-EA85-4993-8E75-036007334655}
+		{276765E4-923A-45DE-A391-9FB8E83ABCDF} = {049B611F-85F6-4E8D-9E80-DB2A814F4770}
+	EndGlobalSection
+EndGlobal

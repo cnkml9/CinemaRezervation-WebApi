@@ -1,0 +1,49 @@
+services:
+  catalog-db:
+    image: postgres:16-alpine
+    container_name: cinema-catalog-db
+    environment:
+      POSTGRES_DB: ${CATALOG_POSTGRES_DB:-catalogdb}
+      POSTGRES_USER: ${CATALOG_POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${CATALOG_POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "${CATALOG_DB_PORT:-5432}:5432"
+    volumes:
+      - ./docker/volumes/catalog-db:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - cinema-net
+
+  reservation-db:
+    image: postgres:16-alpine
+    container_name: cinema-reservation-db
+    environment:
+      POSTGRES_DB: ${RESERVATION_POSTGRES_DB:-reservationdb}
+      POSTGRES_USER: ${RESERVATION_POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${RESERVATION_POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "${RESERVATION_DB_PORT:-5433}:5432"
+    volumes:
+      - ./docker/volumes/reservation-db:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - cinema-net
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: cinema-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+    ports:
+      - "${RABBITMQ_PORT:-5672}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
+    volumes:
+      - ./docker/volumes/rabbitmq:/var/lib/rabbitmq
+    restart: unless-stopped
+    networks:
+      - cinema-net
+
+networks:
+  cinema-net:
+    driver: bridge

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CinemaReservation.Reservation.Domain\CinemaReservation.Reservation.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\CinemaReservation.Common.Messaging\CinemaReservation.Common.Messaging.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.2.5" />
+  </ItemGroup>
+
+</Project>
