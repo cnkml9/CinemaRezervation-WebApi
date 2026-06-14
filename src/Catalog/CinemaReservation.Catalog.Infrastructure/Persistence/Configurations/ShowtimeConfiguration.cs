@@ -19,7 +19,13 @@ public class ShowtimeConfiguration : IEntityTypeConfiguration<Showtime>
             .HasPrecision(18, 2)
             .IsRequired();
 
+        builder.Property(x => x.HallId)
+            .IsRequired();
+
         builder.HasIndex(x => new { x.MovieId, x.Time })
+            .IsUnique();
+
+        builder.HasIndex(x => new { x.HallId, x.Time })
             .IsUnique();
 
         builder.HasMany(x => x.Tickets)

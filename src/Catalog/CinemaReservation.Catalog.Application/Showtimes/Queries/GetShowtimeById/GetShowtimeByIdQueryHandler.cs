@@ -18,7 +18,7 @@ public sealed class GetShowtimeByIdQueryHandler : IRequestHandler<GetShowtimeByI
     {
         return await _dbContext.Showtimes
             .Where(x => x.Id == request.Id)
-            .Select(x => new ShowtimeResponse(x.Id, x.MovieId, x.Time, x.Price))
+            .Select(x => new ShowtimeResponse(x.Id, x.MovieId, x.HallId, x.Time, x.Price))
             .FirstOrDefaultAsync(cancellationToken);
     }
 }

@@ -5,6 +5,7 @@ namespace CinemaReservation.Catalog.Domain.Entities;
 public class Showtime : BaseEntity
 {
     public int MovieId { get; set; }
+    public int HallId { get; set; }
     public DateTime Time { get; set; }
     public decimal Price { get; set; }
 

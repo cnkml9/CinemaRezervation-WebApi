@@ -13,23 +13,57 @@ public sealed class CreateTicketCommandHandler : IRequestHandler<CreateTicketCom
 {
     private readonly ICatalogDbContext _dbContext;
     private readonly IPublishEndpoint _publishEndpoint;
+    private readonly IReservationSeatAvailabilityClient _seatAvailabilityClient;
 
-    public CreateTicketCommandHandler(ICatalogDbContext dbContext, IPublishEndpoint publishEndpoint)
+    public CreateTicketCommandHandler(
+        ICatalogDbContext dbContext,
+        IPublishEndpoint publishEndpoint,
+        IReservationSeatAvailabilityClient seatAvailabilityClient)
     {
         _dbContext = dbContext;
         _publishEndpoint = publishEndpoint;
+        _seatAvailabilityClient = seatAvailabilityClient;
     }
 
     public async Task<CreateTicketResult> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
     {
+        var seatNumber = request.SeatNumber.Trim().ToUpperInvariant();
+        if (string.IsNullOrWhiteSpace(seatNumber))
+        {
+            throw new RequestValidationException(new[]
+            {
+                new ValidationFailureItem("SeatNumber", "ERR_REQUIRED_SEAT_NUMBER", "Seat number is required.")
+            });
+        }
+
         var showtimeExists = await _dbContext.Showtimes.AnyAsync(x => x.Id == request.ShowtimeId, cancellationToken);
         if (!showtimeExists)
         {
             throw new ResourceNotFoundException("Showtime");
         }
 
+        var seatAvailability = await _seatAvailabilityClient.GetSeatAvailabilityAsync(
+            request.ShowtimeId,
+            seatNumber,
+            cancellationToken);
+
+        if (seatAvailability == ReservationSeatAvailability.ShowtimeSeatsNotFound)
+        {
+            throw new ResourceNotFoundException("Showtime seats");
+        }
+
+        if (seatAvailability == ReservationSeatAvailability.SeatNotFound)
+        {
+            throw new ResourceNotFoundException("Seat");
+        }
+
+        if (seatAvailability == ReservationSeatAvailability.Reserved)
+        {
+            throw new InvalidOperationException("Bu koltuk bu seans için zaten dolu.");
+        }
+
         var exists = await _dbContext.Tickets
-            .AnyAsync(x => x.ShowtimeId == request.ShowtimeId && x.SeatNumber == request.SeatNumber && x.Status == TicketStatus.Purchased, cancellationToken);
+            .AnyAsync(x => x.ShowtimeId == request.ShowtimeId && x.SeatNumber == seatNumber && x.Status == TicketStatus.Purchased, cancellationToken);
 
         if (exists)
         {
@@ -40,7 +74,7 @@ public sealed class CreateTicketCommandHandler : IRequestHandler<CreateTicketCom
         {
             ShowtimeId = request.ShowtimeId,
             UserId = request.UserId,
-            SeatNumber = request.SeatNumber,
+            SeatNumber = seatNumber,
             Status = TicketStatus.Purchased
         };
 

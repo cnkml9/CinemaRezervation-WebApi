@@ -1,8 +1,7 @@
-using CinemaReservation.Catalog.Application.Common.Validation;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
-namespace CinemaReservation.Catalog.Api.Middleware;
+namespace CinemaReservation.Reservation.Api.Middleware;
 
 public sealed class ExceptionHandlingMiddleware
 {
@@ -18,60 +17,6 @@ public sealed class ExceptionHandlingMiddleware
         try
         {
             await _next(context);
-        }
-        catch (RequestValidationException ex)
-        {
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Response.ContentType = "application/json";
-
-            await context.Response.WriteAsJsonAsync(new
-            {
-                title = "Validation failed",
-                status = StatusCodes.Status400BadRequest,
-                errors = ex.Errors.Select(error => new
-                {
-                    field = error.Field,
-                    code = error.Code,
-                    message = error.Message
-                })
-            });
-        }
-        catch (ResourceNotFoundException ex)
-        {
-            context.Response.StatusCode = StatusCodes.Status404NotFound;
-            context.Response.ContentType = "application/json";
-
-            await context.Response.WriteAsJsonAsync(new
-            {
-                title = "Resource not found",
-                status = StatusCodes.Status404NotFound,
-                resource = ex.ResourceName,
-                message = $"{ex.ResourceName} not found"
-            });
-        }
-        catch (ExternalServiceUnavailableException ex)
-        {
-            context.Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
-            context.Response.ContentType = "application/json";
-
-            await context.Response.WriteAsJsonAsync(new
-            {
-                title = "External service unavailable",
-                status = StatusCodes.Status503ServiceUnavailable,
-                service = ex.ServiceName
-            });
-        }
-        catch (InvalidOperationException ex)
-        {
-            context.Response.StatusCode = StatusCodes.Status409Conflict;
-            context.Response.ContentType = "application/json";
-
-            await context.Response.WriteAsJsonAsync(new
-            {
-                title = "Conflict",
-                status = StatusCodes.Status409Conflict,
-                message = ex.Message
-            });
         }
         catch (PostgresException ex) when (ex.SqlState == PostgresErrorCodes.UndefinedColumn)
         {

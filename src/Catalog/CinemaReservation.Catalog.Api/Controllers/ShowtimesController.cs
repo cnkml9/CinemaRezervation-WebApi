@@ -44,7 +44,7 @@ public sealed class ShowtimesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ShowtimeResponse>> Create([FromBody] CreateShowtimeRequest request, CancellationToken cancellationToken)
     {
-        var showtime = await _mediator.Send(new CreateShowtimeCommand(request.MovieId, request.Time, request.Price), cancellationToken);
+        var showtime = await _mediator.Send(new CreateShowtimeCommand(request.MovieId, request.HallId, request.Time, request.Price), cancellationToken);
         return CreatedAtAction(nameof(GetById), new { id = showtime.Id }, showtime);
     }
 
@@ -54,7 +54,7 @@ public sealed class ShowtimesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ShowtimeResponse>> Update([FromRoute] int id, [FromBody] UpdateShowtimeRequest request, CancellationToken cancellationToken)
     {
-        var showtime = await _mediator.Send(new UpdateShowtimeCommand(id, request.MovieId, request.Time, request.Price), cancellationToken);
+        var showtime = await _mediator.Send(new UpdateShowtimeCommand(id, request.MovieId, request.HallId, request.Time, request.Price), cancellationToken);
         return showtime is null ? NotFound() : Ok(showtime);
     }
 

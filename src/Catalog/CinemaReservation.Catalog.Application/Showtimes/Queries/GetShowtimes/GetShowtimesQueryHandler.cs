@@ -18,7 +18,7 @@ public sealed class GetShowtimesQueryHandler : IRequestHandler<GetShowtimesQuery
     {
         return await _dbContext.Showtimes
             .OrderBy(x => x.Id)
-            .Select(x => new ShowtimeResponse(x.Id, x.MovieId, x.Time, x.Price))
+            .Select(x => new ShowtimeResponse(x.Id, x.MovieId, x.HallId, x.Time, x.Price))
             .ToListAsync(cancellationToken);
     }
 }

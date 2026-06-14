@@ -13,6 +13,6 @@ public class SeatConfiguration : IEntityTypeConfiguration<Seat>
         builder.Property(x => x.SeatNo).IsRequired().HasMaxLength(20);
         builder.Property(x => x.ShowtimeId).IsRequired();
         builder.Property(x => x.IsReserved).IsRequired();
-        builder.HasIndex(x => new { x.HallId, x.ShowtimeId, x.SeatNo }).IsUnique();
+        builder.HasIndex(x => new { x.ShowtimeId, x.SeatNo }).IsUnique();
     }
 }

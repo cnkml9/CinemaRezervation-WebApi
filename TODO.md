@@ -35,13 +35,13 @@
 - [x] RabbitMQ consumer ile gelen ticket satın alma bilgisini işle
 - [x] İlgili koltuğu `IsReserved = true` olarak güncelle
 - [x] Koltuk ve salon ilişkisini doğru kur
-- [ ] `Controllers` klasörü altında `HallsController` ve `SeatsController` oluştur
-- [ ] `Halls` için `create`, `update`, `delete`, `list`, `get by id` endpointlerini planla
-- [ ] `Seats` için `create`, `update`, `delete`, `list`, `get by id` endpointlerini planla
-- [ ] Seans bazlı koltuk durumunu gösterecek `list by showtime` endpointini planla
-- [ ] Reservation tarafında Swagger’dan rahat test edilecek route yapısını netleştir
-- [ ] Reservation tarafı için validation kurallarını ekle
-- [ ] Ticket satışı sonrası koltuk durumunu güncelleyen akışı endpointlerden bağımsız çalışacak şekilde koru
+- [x] `Controllers` klasörü altında `HallsController` ve `SeatsController` oluştur
+- [x] `Halls` için `create`, `update`, `delete`, `list`, `get by id` endpointlerini kur
+- [x] `Seats` için `create`, `update`, `delete`, `list`, `get by id` endpointlerini kur
+- [x] Seans bazlı koltuk durumunu gösterecek `list by showtime` endpointini kur
+- [x] Reservation tarafında Swagger’dan rahat test edilecek route yapısını netleştir
+- [x] Reservation tarafı için validation kurallarını ekle
+- [x] Ticket satışı sonrası koltuk durumunu güncelleyen akışı endpointlerden bağımsız çalışacak şekilde koru
 
 ## 4. Veritabanı ve Migration
 - [ ] İki servis için ayrı PostgreSQL bağlantılarını yapılandır
@@ -49,7 +49,7 @@
 - [x] Database update komutlarını hazırla
 - [ ] Docker volume ile verilerin kalıcı olmasını doğrula
 - [ ] Gerekliyse Catalog tarafında `MovieStatus`, `TicketStatus` için seed/veri kuralı belirle
-- [ ] Reservation tarafında koltukların seans bazlı tutulması için ek alan gereksinimi var mı kontrol et
+- [x] Reservation tarafında koltukların seans bazlı tutulması için ek alan gereksinimi kontrol edildi
 
 ## 5. API ve Çalıştırma
 - [ ] İki servisi de ayağa kaldır

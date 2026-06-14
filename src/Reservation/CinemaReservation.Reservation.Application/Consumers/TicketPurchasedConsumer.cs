@@ -17,7 +17,7 @@ public sealed class TicketPurchasedConsumer : IConsumer<TicketPurchasedEvent>
     {
         var seat = await _dbContext.GetSeatAsync(
             context.Message.ShowtimeId,
-            context.Message.SeatNumber,
+            context.Message.SeatNumber.Trim().ToUpperInvariant(),
             context.CancellationToken);
 
         if (seat is null)

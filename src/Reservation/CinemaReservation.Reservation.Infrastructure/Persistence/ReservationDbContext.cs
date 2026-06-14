@@ -14,11 +14,28 @@ public class ReservationDbContext : DbContext, IReservationDbContext
     public DbSet<Hall> Halls => Set<Hall>();
     public DbSet<Seat> Seats => Set<Seat>();
 
+    public Task<Hall?> GetHallAsync(int hallId, CancellationToken cancellationToken = default)
+    {
+        return Halls.FirstOrDefaultAsync(x => x.Id == hallId, cancellationToken);
+    }
+
     public Task<Seat?> GetSeatAsync(int showtimeId, string seatNo, CancellationToken cancellationToken = default)
     {
+        var normalizedSeatNo = seatNo.Trim().ToUpperInvariant();
+
         return Seats.FirstOrDefaultAsync(
-            x => x.ShowtimeId == showtimeId && x.SeatNo == seatNo,
+            x => x.ShowtimeId == showtimeId && x.SeatNo == normalizedSeatNo,
             cancellationToken);
+    }
+
+    public Task<bool> ShowtimeSeatsExistAsync(int showtimeId, CancellationToken cancellationToken = default)
+    {
+        return Seats.AnyAsync(x => x.ShowtimeId == showtimeId, cancellationToken);
+    }
+
+    public void AddSeats(IEnumerable<Seat> seats)
+    {
+        Seats.AddRange(seats);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

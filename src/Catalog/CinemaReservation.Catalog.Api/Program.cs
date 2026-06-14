@@ -1,3 +1,6 @@
+using CinemaReservation.Catalog.Api.Clients;
+using System.Globalization;
+using CinemaReservation.Catalog.Application.Abstractions;
 using CinemaReservation.Catalog.Application.Movies.Commands.CreateMovie;
 using CinemaReservation.Catalog.Application.Common.Behaviors;
 using CinemaReservation.Catalog.Api.Middleware;
@@ -8,6 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Keep API parsing/validation deterministic across locales.
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
 builder.Services.AddControllers();
 builder.Services.Configure<ApiBehaviorOptions>(options =>
@@ -41,13 +48,27 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreateMovieCommand>());
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddRabbitMqMessaging(builder.Configuration);
+builder.Services.AddHttpClient<IReservationSeatAvailabilityClient, ReservationSeatAvailabilityClient>(client =>
+{
+    var baseUrl = builder.Configuration["Services:ReservationApi"] ?? "http://localhost:5001";
+    client.BaseAddress = new Uri(baseUrl);
+});
 builder.Services.AddDbContext<CatalogDbContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("CatalogDb");
     options.UseNpgsql(connectionString);
 });
+builder.Services.AddScoped<CinemaReservation.Catalog.Application.Abstractions.ICatalogDbContext>(sp =>
+    sp.GetRequiredService<CatalogDbContext>());
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+    var dbContext = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
+    dbContext.Database.Migrate();
+}
 
 if (app.Environment.IsDevelopment())
 {

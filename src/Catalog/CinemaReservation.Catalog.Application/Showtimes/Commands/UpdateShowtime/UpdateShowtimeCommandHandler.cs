@@ -30,11 +30,12 @@ public sealed class UpdateShowtimeCommandHandler : IRequestHandler<UpdateShowtim
         }
 
         showtime.MovieId = request.MovieId;
+        showtime.HallId = request.HallId;
         showtime.Time = request.Time!.Value;
         showtime.Price = request.Price;
 
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        return new ShowtimeResponse(showtime.Id, showtime.MovieId, showtime.Time, showtime.Price);
+        return new ShowtimeResponse(showtime.Id, showtime.MovieId, showtime.HallId, showtime.Time, showtime.Price);
     }
 }
